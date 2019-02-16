@@ -7,14 +7,18 @@ const postcss = require('postcss')
 const { createHash } = require('./utils')
 
 function postcssQueryHash(options = {}) {
-  const opts = Object.assign({}, {
-    algorithm: 'md5',
-    manifest: './manifest.json',
-  }, options)
+  const opts = Object.assign(
+    {},
+    {
+      algorithm: 'md5',
+      manifest: './manifest.json',
+    },
+    options
+  )
 
   return (root, result) => {
     const hash = createHash(root.toString(), opts.algorithm)
-    const originalName = result.opts.to;
+    const originalName = result.opts.to
     const filename = originalName.replace(result.opts.cwd, '')
     const hashFilename = `${filename}?${hash}`
     const next = {}
@@ -26,9 +30,9 @@ function postcssQueryHash(options = {}) {
 
     try {
       prev = JSON.parse(fs.readFileSync(opts.manifest, 'utf-8'))
-    } catch {}
+    } catch (_) {}
 
-    const data = JSON.stringify(Object.assign({}, prev, next), null ,2)
+    const data = JSON.stringify(Object.assign({}, prev, next), null, 2)
     fs.writeFileSync(opts.manifest, data, 'utf-8')
   }
 }

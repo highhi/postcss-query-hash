@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "postcss ./example/**/*.css -d ./dist",
+    "lint": "eslint --fix ./index.js ./index.test.js ./utils/index.js",
     "test": "jest"
   },
   "author": "highhi",
@@ -14,7 +15,11 @@
     "postcss": "^7.0.14"
   },
   "devDependencies": {
+    "eslint": "^5.14.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.1.0",
-    "postcss-cli": "^6.1.1"
+    "prettier": "^1.16.4"
   }
 }
