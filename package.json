@@ -3,13 +3,35 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "author": "highhi",
+  "license": "MIT",
+  "repository": "highhi/postcss-query-hash",
+  "homepage": "https://github.com/highhi/postcss-query-hash",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "postcss-query-hash",
+    "cache-busting",
+    "cache-buster",
+    "hash",
+    "md5",
+    "md4",
+    "md2",
+    "sha",
+    "sha1",
+    "sha224",
+    "sha256",
+    "sha384",
+    "sha512",
+    "mdc2",
+    "manifest"
+  ],
   "scripts": {
     "start": "postcss ./example/**/*.css -d ./dist",
     "lint": "eslint --fix ./index.js ./index.test.js ./utils/index.js",
-    "test": "jest"
+    "test": "npm run lint && jest"
   },
-  "author": "highhi",
-  "license": "MIT",
   "dependencies": {
     "mkdirp": "^0.5.1",
     "postcss": "^7.0.14"
