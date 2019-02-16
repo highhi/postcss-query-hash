@@ -4,14 +4,7 @@ const fs = require('fs')
 const mkdirp = require('mkdirp')
 const path = require('path')
 const postcss = require('postcss')
-const crypto = require('crypto')
-
-function generateHash(css, algorithm) {
-  return crypto
-    .createHash(algorithm)
-    .update(css)
-    .digest('hex')
-}
+const { createHash } = require('./utils')
 
 function postcssQueryHash(options = {}) {
   const opts = Object.assign({}, {
@@ -20,14 +13,14 @@ function postcssQueryHash(options = {}) {
   }, options)
 
   return (root, result) => {
-    const hash = generateHash(root.toString(), opts.algorithm)
-    console.log(root)
-    console.log(result)
-    const filename = result.opts.to.replace(result.opts.cwd, '')
+    const hash = createHash(root.toString(), opts.algorithm)
+    const originalName = result.opts.to;
+    const filename = originalName.replace(result.opts.cwd, '')
     const hashFilename = `${filename}?${hash}`
     const next = {}
     let prev = {}
 
+    result.opts.to = hashFilename
     next[filename] = hashFilename
     mkdirp.sync(path.dirname(opts.manifest))
 
@@ -41,5 +34,3 @@ function postcssQueryHash(options = {}) {
 }
 
 module.exports = postcss.plugin('postcss-query-hash', postcssQueryHash)
-
-
