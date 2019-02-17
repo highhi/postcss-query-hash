@@ -1,4 +1,5 @@
 # postcss-query-hash
+Output a manifest file for Cachebusting.  
 
 ## Usage
 
