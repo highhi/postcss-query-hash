@@ -1,7 +1,7 @@
 {
   "name": "postcss-query-hash",
   "version": "1.0.0",
-  "description": "Output a manifest file for Cachebusting.",
+  "description": "Output a manifest file for cache busting.",
   "main": "index.js",
   "author": "highhi",
   "license": "MIT",
