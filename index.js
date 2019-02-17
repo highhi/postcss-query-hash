@@ -24,7 +24,6 @@ function postcssQueryHash(options = {}) {
     const next = {}
     let prev = {}
 
-    result.opts.to = hashFilename
     next[filename] = hashFilename
     mkdirp.sync(path.dirname(opts.manifest))
 
