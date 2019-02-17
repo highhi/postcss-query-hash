@@ -41,7 +41,6 @@ async function execPlugin(file, opts) {
   const hash = createHash(fs.readFileSync(filePath, 'utf-8'), 'md5')
   const hashFilename = `${file}?${hash}`
 
-  expect(result.opts.to).toBe(hashFilename)
   expect(result.warnings().length).toBe(0)
   return { file, hashFilename }
 }
