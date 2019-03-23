@@ -15,16 +15,13 @@ try {
   fs.unlinkSync(MANIFEST)
 } catch (_) {}
 
-files.forEach(async file => {
-  const css = await readFile(file)
-
-  try {
+;(async () => {
+  for (const file of files) {
+    const css = await readFile(file)
     await postcss([queryHash({ manifest: MANIFEST })]).process(css, {
       from: file,
       to: file.replace(SRC, DIST),
       cwd: CWD,
     })
-  } catch (err) {
-    console.error(err)
   }
-})
+})()
